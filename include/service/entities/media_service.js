@@ -761,11 +761,12 @@ module.exports = function MediaServiceModule(pb) {
         var id    = parts[0].substring(prefix.length);
 
         var style = {};
-        var attrs = parts[1].split(',');
-        attrs.forEach(function(item) {
-            var division = item.split(':');
-            style[division[0]] = division[1];
-        });
+        if (parts[1] && parts[1].length) {
+            var attrs = parts[1].split(',').forEach(function(item) {
+                var division = item.split(':');
+                style[division[0]] = division[1];
+            });
+        }
 
         return {
             id: id,
